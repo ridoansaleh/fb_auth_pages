@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SignUp from "./signup";
-import LogIn from "./login";
+import Home from "./home";
 
 function Routes() {
   return (
@@ -9,8 +9,8 @@ function Routes() {
         <Route exact path="/">
           <SignUp />
         </Route>
-        <Route path="/login">
-          <LogIn />
+        <Route path="/home">
+          <Home />
         </Route>
       </Switch>
     </Router>

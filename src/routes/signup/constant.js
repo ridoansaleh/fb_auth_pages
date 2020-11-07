@@ -13,14 +13,6 @@ export const MONTH = [
   "December",
 ];
 
-export const DAY = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
+export const DAY = Array.from(Array(32).keys()).filter((d) => d > 0);
 
 export const YEAR = Array.from(Array(2021).keys()).filter((d) => d > 1910);
