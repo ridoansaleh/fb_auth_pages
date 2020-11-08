@@ -14,7 +14,6 @@ function Header(props) {
   const handleLogin = (e) => {
     e.preventDefault();
     setFormSubmit(true);
-    console.log("Login ...");
 
     let userTable = localStorage.getItem("fb_auth_user");
     userTable = userTable ? JSON.parse(userTable) : [];
@@ -30,7 +29,7 @@ function Header(props) {
         JSON.stringify(isCredentialsMatched)
       );
       setFormSubmit(false);
-      history.push("/home");
+      history.replace("/home");
     } else {
       setEmailError(true);
       setPasswordError(true);

@@ -1,5 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { Container } from "./_homeStyle";
+import manIcon from "./assets/user.svg";
+import underConstructionPic from "./assets/under-construction.png";
 
 function Home(props) {
   const history = useHistory();
@@ -12,14 +14,20 @@ function Home(props) {
   const handleLogout = () => {
     sessionStorage.removeItem("fb_auth_login");
     sessionStorage.removeItem("fb_auth_active");
-    history.push("/");
+    history.replace("/");
   };
 
   return (
     <Container>
       <div>
-        <h3>Welcome, {fullname}</h3>
         <h4 onClick={handleLogout}>Logout</h4>
+        <div>
+          <h4>Welcome, {fullname}</h4>
+          <img src={manIcon} />
+        </div>
+      </div>
+      <div id="content">
+        <img src={underConstructionPic} alt="Under Construction" />
       </div>
     </Container>
   );
