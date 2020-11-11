@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import globeIcon from "./assets/globe.PNG";
+import globeIcon from "../assets/globe.PNG";
 
 export const Wrapper = styled.section`
   display: flex;

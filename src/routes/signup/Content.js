@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Wrapper } from "./_contentStyle";
+import { Wrapper } from "./styles/_contentStyle";
 import { MONTH, DAY, YEAR } from "./constant";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-function Content(props) {
+function Content() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,19 +16,20 @@ function Content(props) {
     day: "",
     year: "",
   });
-  const [isFormSubmit, setFormSubmit] = useState(false);
+  const [isFormSubmitted, setFormSubmitted] = useState(false);
   const [infoSubmission, setInfoSubmission] = useState("");
 
-  const isFirstnameError = isFormSubmit && !firstName;
-  const isLastnameError = isFormSubmit && !lastName;
-  const isEmailError = isFormSubmit && !EMAIL_REGEX.test(email);
+  const isFirstnameError = isFormSubmitted && !firstName;
+  const isLastnameError = isFormSubmitted && !lastName;
+  const isEmailError = isFormSubmitted && !EMAIL_REGEX.test(email);
   const isReEmailError = !isEmailError
-    ? isFormSubmit && reEmail !== email
+    ? isFormSubmitted && reEmail !== email
     : false;
-  const isPasswordError = isFormSubmit && password.length < 8;
-  const isGenderError = isFormSubmit && !gender;
+  const isPasswordError = isFormSubmitted && password.length < 8;
+  const isGenderError = isFormSubmitted && !gender;
   const isBirthdateError =
-    isFormSubmit && Object.values(birthdate).filter((d) => d !== "").length < 3;
+    isFormSubmitted &&
+    Object.values(birthdate).filter((d) => d !== "").length < 3;
 
   useEffect(() => {
     if (infoSubmission) {
@@ -40,7 +41,7 @@ function Content(props) {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    setFormSubmit(true);
+    setFormSubmitted(true);
     if (
       firstName &&
       lastName &&
@@ -100,7 +101,7 @@ function Content(props) {
         year: "",
       });
 
-      setFormSubmit(false);
+      setFormSubmitted(false);
       setInfoSubmission(
         "You've successfully signup. Please login with your account!"
       );
@@ -121,230 +122,240 @@ function Content(props) {
         <hr />
         <form noValidate onSubmit={handleSignUp}>
           <table>
-            <tr>
-              <td>
-                <label for="first_name">First Name: </label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  id="first_name"
-                  name="first_name"
-                  className={isFirstnameError ? `error` : ``}
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </td>
-            </tr>
-            {isFirstnameError && (
+            <tbody>
               <tr>
-                <td></td>
                 <td>
-                  <div className="error-msg">
-                    Please input a valid Firstname
-                  </div>
+                  <label htmlFor="first_name">First Name: </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    className={isFirstnameError ? `error` : ``}
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
                 </td>
               </tr>
-            )}
-            <tr>
-              <td>
-                <label for="last_name">Last Name: </label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  id="last_name"
-                  name="last_name"
-                  className={isLastnameError ? `error` : ``}
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </td>
-            </tr>
-            {isLastnameError && (
+              {isFirstnameError && (
+                <tr>
+                  <td></td>
+                  <td>
+                    <div className="error-msg">
+                      Please input a valid Firstname
+                    </div>
+                  </td>
+                </tr>
+              )}
               <tr>
-                <td></td>
                 <td>
-                  <div className="error-msg">Please input a valid Lastname</div>
+                  <label htmlFor="last_name">Last Name: </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    className={isLastnameError ? `error` : ``}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
                 </td>
               </tr>
-            )}
-            <tr>
-              <td>
-                <label for="email">Your Email: </label>
-              </td>
-              <td>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className={isEmailError ? `error` : ``}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </td>
-            </tr>
-            {isEmailError && (
+              {isLastnameError && (
+                <tr>
+                  <td></td>
+                  <td>
+                    <div className="error-msg">
+                      Please input a valid Lastname
+                    </div>
+                  </td>
+                </tr>
+              )}
               <tr>
-                <td></td>
                 <td>
-                  <div className="error-msg">Please input a valid Email</div>
+                  <label htmlFor="email">Your Email: </label>
+                </td>
+                <td>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className={isEmailError ? `error` : ``}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </td>
               </tr>
-            )}
-            <tr>
-              <td>
-                <label for="re_email">Re-enter Email: </label>
-              </td>
-              <td>
-                <input
-                  type="email"
-                  id="re_email"
-                  name="re_email"
-                  className={isReEmailError ? `error` : ``}
-                  value={reEmail}
-                  onChange={(e) => setReEmail(e.target.value)}
-                />
-              </td>
-            </tr>
-            {isReEmailError && (
+              {isEmailError && (
+                <tr>
+                  <td></td>
+                  <td>
+                    <div className="error-msg">Please input a valid Email</div>
+                  </td>
+                </tr>
+              )}
               <tr>
-                <td></td>
                 <td>
-                  <div className="error-msg">Email is not matched</div>
+                  <label htmlFor="re_email">Re-enter Email: </label>
+                </td>
+                <td>
+                  <input
+                    type="email"
+                    id="re_email"
+                    name="re_email"
+                    className={isReEmailError ? `error` : ``}
+                    value={reEmail}
+                    onChange={(e) => setReEmail(e.target.value)}
+                  />
                 </td>
               </tr>
-            )}
-            <tr>
-              <td>
-                <label for="password">New Password: </label>
-              </td>
-              <td>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className={isPasswordError ? `error` : ``}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </td>
-            </tr>
-            {isPasswordError && (
+              {isReEmailError && (
+                <tr>
+                  <td></td>
+                  <td>
+                    <div className="error-msg">Email is not matched</div>
+                  </td>
+                </tr>
+              )}
               <tr>
-                <td></td>
                 <td>
-                  <div className="error-msg">
-                    Please input a valid Password (min. 8 chars)
-                  </div>
+                  <label htmlFor="password">New Password: </label>
+                </td>
+                <td>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    className={isPasswordError ? `error` : ``}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </td>
               </tr>
-            )}
-            <tr>
-              <td>
-                <label for="gender">I am: </label>
-              </td>
-              <td>
-                <select
-                  name="gender"
-                  id="gender"
-                  className={isGenderError ? `error` : ``}
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <option value="">Select Sex</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </td>
-            </tr>
-            {isGenderError && (
+              {isPasswordError && (
+                <tr>
+                  <td></td>
+                  <td>
+                    <div className="error-msg">
+                      Please input a valid Password (min. 8 chars)
+                    </div>
+                  </td>
+                </tr>
+              )}
               <tr>
-                <td></td>
                 <td>
-                  <div className="error-msg">Please select a valid Gender</div>
+                  <label htmlFor="gender">I am: </label>
+                </td>
+                <td>
+                  <select
+                    name="gender"
+                    id="gender"
+                    className={isGenderError ? `error` : ``}
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                  >
+                    <option value="">Select Sex</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
                 </td>
               </tr>
-            )}
-            <tr>
-              <td>
-                <label for="birthday">Birthday: </label>
-              </td>
-              <td id="birthday_wrapper">
-                <select
-                  name="month"
-                  id="birthday"
-                  className={isBirthdateError ? `error` : ``}
-                  value={birthdate.month}
-                  onChange={(e) =>
-                    setBirthdate({ ...birthdate, month: e.target.value })
-                  }
-                >
-                  <option id="default" value="">
-                    Month:
-                  </option>
-                  {MONTH.map((d) => (
-                    <option id={d} value={d}>
-                      {d}
+              {isGenderError && (
+                <tr>
+                  <td></td>
+                  <td>
+                    <div className="error-msg">
+                      Please select a valid Gender
+                    </div>
+                  </td>
+                </tr>
+              )}
+              <tr>
+                <td>
+                  <label htmlFor="birthday">Birthday: </label>
+                </td>
+                <td id="birthday_wrapper">
+                  <select
+                    name="month"
+                    id="birthday"
+                    className={isBirthdateError ? `error` : ``}
+                    value={birthdate.month}
+                    onChange={(e) =>
+                      setBirthdate({ ...birthdate, month: e.target.value })
+                    }
+                  >
+                    <option id="default" value="">
+                      Month:
                     </option>
-                  ))}
-                </select>
-                <select
-                  name="day"
-                  id="birthday"
-                  className={isBirthdateError ? `error` : ``}
-                  value={birthdate.day}
-                  onChange={(e) =>
-                    setBirthdate({ ...birthdate, day: e.target.value })
-                  }
-                >
-                  <option id="default" value="">
-                    Day:
-                  </option>
-                  {DAY.map((d) => (
-                    <option value={d}>{d}</option>
-                  ))}
-                </select>
-                <select
-                  name="year"
-                  id="birthday"
-                  className={isBirthdateError ? `error` : ``}
-                  value={birthdate.year}
-                  onChange={(e) =>
-                    setBirthdate({ ...birthdate, year: e.target.value })
-                  }
-                >
-                  <option id="default" value="">
-                    Year:
-                  </option>
-                  {YEAR.map((d) => (
-                    <option value={d}>{d}</option>
-                  ))}
-                </select>
-              </td>
-            </tr>
-            {isBirthdateError && (
+                    {MONTH.map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    name="day"
+                    id="birthday"
+                    className={isBirthdateError ? `error` : ``}
+                    value={birthdate.day}
+                    onChange={(e) =>
+                      setBirthdate({ ...birthdate, day: e.target.value })
+                    }
+                  >
+                    <option id="default" value="">
+                      Day:
+                    </option>
+                    {DAY.map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    name="year"
+                    id="birthday"
+                    className={isBirthdateError ? `error` : ``}
+                    value={birthdate.year}
+                    onChange={(e) =>
+                      setBirthdate({ ...birthdate, year: e.target.value })
+                    }
+                  >
+                    <option id="default" value="">
+                      Year:
+                    </option>
+                    {YEAR.map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+              </tr>
+              {isBirthdateError && (
+                <tr>
+                  <td></td>
+                  <td>
+                    <div className="error-msg">
+                      Please select a valid Birthdate
+                    </div>
+                  </td>
+                </tr>
+              )}
               <tr>
                 <td></td>
                 <td>
-                  <div className="error-msg">
-                    Please select a valid Birthdate
-                  </div>
+                  <a href="#">Why do i need to provide my birthday?</a>
                 </td>
               </tr>
-            )}
-            <tr>
-              <td></td>
-              <td>
-                <a href="#">Why do i need to provide my birthday?</a>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <input type="submit" value="Sign Up" />
-              </td>
-            </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <input type="submit" value="Sign Up" />
+                </td>
+              </tr>
+            </tbody>
           </table>
           {infoSubmission && (
             <div className="error-submission">{infoSubmission}</div>
@@ -352,7 +363,7 @@ function Content(props) {
         </form>
         <hr />
         <p id="create-page">
-          <a href="#">Create a Page</a> for a celebrity, band or business.
+          <a href="#">Create a Page</a> htmlFor a celebrity, band or business.
         </p>
       </div>
     </Wrapper>

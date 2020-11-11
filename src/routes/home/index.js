@@ -14,6 +14,7 @@ function Home(props) {
   const handleLogout = () => {
     sessionStorage.removeItem("fb_auth_login");
     sessionStorage.removeItem("fb_auth_active");
+    localStorage.removeItem("fb_auth_keep");
     history.replace("/");
   };
 

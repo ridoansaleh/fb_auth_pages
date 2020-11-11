@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Wrapper } from "./_headerStyle";
+import { Wrapper } from "./styles/_headerStyle";
 
-function Header(props) {
+function Header() {
   const [email, setEmail] = useState("");
   const [isEmailError, setEmailError] = useState(false);
+  const [isKeepLogin, setKeepLogin] = useState(false);
   const [password, setPassword] = useState("");
   const [isPasswordError, setPasswordError] = useState(false);
-  const [isFormSubmit, setFormSubmit] = useState(false);
+  const [isFormSubmitted, setFormSubmitted] = useState(false);
 
   const history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setFormSubmit(true);
+    setFormSubmitted(true);
 
     let userTable = localStorage.getItem("fb_auth_user");
     userTable = userTable ? JSON.parse(userTable) : [];
@@ -23,12 +24,18 @@ function Header(props) {
     );
 
     if (isCredentialsMatched) {
+      if (isKeepLogin) {
+        localStorage.setItem(
+          "fb_auth_keep",
+          JSON.stringify(isCredentialsMatched)
+        );
+      }
       sessionStorage.setItem("fb_auth_login", "!@#$");
       sessionStorage.setItem(
         "fb_auth_active",
         JSON.stringify(isCredentialsMatched)
       );
-      setFormSubmit(false);
+      setFormSubmitted(false);
       history.replace("/home");
     } else {
       setEmailError(true);
@@ -37,19 +44,19 @@ function Header(props) {
   };
 
   useEffect(() => {
-    setEmailError(isFormSubmit && !email);
-  }, [isFormSubmit, email]);
+    setEmailError(isFormSubmitted && !email);
+  }, [isFormSubmitted, email]);
 
   useEffect(() => {
-    setPasswordError(isFormSubmit && !password);
-  }, [password, isFormSubmit]);
+    setPasswordError(isFormSubmitted && !password);
+  }, [password, isFormSubmitted]);
 
   return (
     <Wrapper>
       <h1>facebook</h1>
       <form noValidate onSubmit={handleLogin}>
         <div>
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
@@ -64,13 +71,14 @@ function Header(props) {
               type="checkbox"
               id="keep_login"
               name="keep_login"
-              value="keep_me_login"
+              checked={isKeepLogin}
+              onChange={(e) => setKeepLogin(e.target.checked)}
             />
-            <label for="keep_login"> Keep me logged in</label>
+            <label htmlFor="keep_login"> Keep me logged in</label>
           </div>
         </div>
         <div>
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
