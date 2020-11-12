@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Wrapper } from "./styles/_headerStyle";
+import { HOME_PATH } from "../../path";
 
 function Header() {
   const [email, setEmail] = useState("");
@@ -36,7 +37,7 @@ function Header() {
         JSON.stringify(isCredentialsMatched)
       );
       setFormSubmitted(false);
-      history.replace("/home");
+      history.replace(HOME_PATH);
     } else {
       setEmailError(true);
       setPasswordError(true);

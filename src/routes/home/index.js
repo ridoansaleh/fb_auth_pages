@@ -2,8 +2,9 @@ import { useHistory } from "react-router-dom";
 import { Container } from "./_homeStyle";
 import manIcon from "./assets/user.svg";
 import underConstructionPic from "./assets/under-construction.png";
+import { HOME_PATH } from "../../path";
 
-function Home(props) {
+function Home() {
   const history = useHistory();
 
   let user = sessionStorage.getItem("fb_auth_active");
@@ -15,7 +16,7 @@ function Home(props) {
     sessionStorage.removeItem("fb_auth_login");
     sessionStorage.removeItem("fb_auth_active");
     localStorage.removeItem("fb_auth_keep");
-    history.replace("/");
+    history.replace(HOME_PATH);
   };
 
   return (
