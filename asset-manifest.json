@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/fb_auth_pages/static/css/main.ff576dba.chunk.css",
-    "main.js": "/fb_auth_pages/static/js/main.391f074e.chunk.js",
-    "main.js.map": "/fb_auth_pages/static/js/main.391f074e.chunk.js.map",
+    "main.js": "/fb_auth_pages/static/js/main.0e656d89.chunk.js",
+    "main.js.map": "/fb_auth_pages/static/js/main.0e656d89.chunk.js.map",
     "runtime-main.js": "/fb_auth_pages/static/js/runtime-main.cba586e6.js",
     "runtime-main.js.map": "/fb_auth_pages/static/js/runtime-main.cba586e6.js.map",
     "static/js/2.677eb21f.chunk.js": "/fb_auth_pages/static/js/2.677eb21f.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.cba586e6.js",
     "static/js/2.677eb21f.chunk.js",
     "static/css/main.ff576dba.chunk.css",
-    "static/js/main.391f074e.chunk.js"
+    "static/js/main.0e656d89.chunk.js"
   ]
 }
