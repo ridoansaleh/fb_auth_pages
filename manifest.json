@@ -1,0 +1,25 @@
+{
+  "short_name": "FB Auth",
+  "name": "FB Auth Pages",
+  "icons": [
+    {
+      "src": "facebook.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/svg"
+    },
+    {
+      "src": "facebook128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "facebook512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

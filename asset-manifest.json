@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/fb_auth_pages/static/css/main.ff576dba.chunk.css",
+    "main.js": "/fb_auth_pages/static/js/main.f197bcbb.chunk.js",
+    "main.js.map": "/fb_auth_pages/static/js/main.f197bcbb.chunk.js.map",
+    "runtime-main.js": "/fb_auth_pages/static/js/runtime-main.cba586e6.js",
+    "runtime-main.js.map": "/fb_auth_pages/static/js/runtime-main.cba586e6.js.map",
+    "static/js/2.677eb21f.chunk.js": "/fb_auth_pages/static/js/2.677eb21f.chunk.js",
+    "static/js/2.677eb21f.chunk.js.map": "/fb_auth_pages/static/js/2.677eb21f.chunk.js.map",
+    "static/js/3.900bf283.chunk.js": "/fb_auth_pages/static/js/3.900bf283.chunk.js",
+    "static/js/3.900bf283.chunk.js.map": "/fb_auth_pages/static/js/3.900bf283.chunk.js.map",
+    "index.html": "/fb_auth_pages/index.html",
+    "static/css/main.ff576dba.chunk.css.map": "/fb_auth_pages/static/css/main.ff576dba.chunk.css.map",
+    "static/js/2.677eb21f.chunk.js.LICENSE.txt": "/fb_auth_pages/static/js/2.677eb21f.chunk.js.LICENSE.txt",
+    "static/media/globe.19cb4208.PNG": "/fb_auth_pages/static/media/globe.19cb4208.PNG",
+    "static/media/under-construction.bfade679.png": "/fb_auth_pages/static/media/under-construction.bfade679.png",
+    "static/media/user.4a000e6c.svg": "/fb_auth_pages/static/media/user.4a000e6c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cba586e6.js",
+    "static/js/2.677eb21f.chunk.js",
+    "static/css/main.ff576dba.chunk.css",
+    "static/js/main.f197bcbb.chunk.js"
+  ]
+}
