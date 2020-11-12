@@ -3,6 +3,9 @@ import SignUp from "./signup";
 import Home from "./home";
 import { HOME_PATH, SIGNUP_PATH } from "../path";
 
+const { NODE_ENV } = process.env;
+const basename = NODE_ENV === "production" ? "/fb_auth_pages" : "";
+
 function Routes() {
   const checkLoginStatus = () => {
     let keepUser = localStorage.getItem("fb_auth_keep");
@@ -13,7 +16,7 @@ function Routes() {
   };
 
   return (
-    <HashRouter>
+    <HashRouter basename={basename}>
       <Switch>
         <Route
           exact
