@@ -12,6 +12,7 @@ export const Container = styled.div`
   }
 
   @media only screen and (min-width: 1273px) {
+    header,
     > section,
     footer {
       padding-left: calc((100vw - 1233px) / 2);

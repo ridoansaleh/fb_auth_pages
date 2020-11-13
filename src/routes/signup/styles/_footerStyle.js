@@ -4,17 +4,19 @@ export const Wrapper = styled.footer`
   font-size: 12px;
   padding-bottom: 40px;
 
-  li {
-    margin-right: 20px;
-    a {
-      color: #3b5998;
+  ul {
+    padding-left: 5px;
+    li {
+      margin-right: 20px;
+      a {
+        color: #3b5998;
+      }
     }
   }
 
   ul#language {
     display: flex;
     list-style-type: none;
-    margin-left: 0;
     margin-bottom: 30px;
   }
 

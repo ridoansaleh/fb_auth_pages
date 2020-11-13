@@ -12,6 +12,9 @@ function Routes() {
     keepUser = keepUser ? JSON.parse(keepUser) : {};
     const isKeepUserValid =
       Object.values(keepUser).filter((d) => d !== "").length === 6;
+    if (isKeepUserValid) {
+      sessionStorage.setItem("fb_auth_active", JSON.stringify(keepUser));
+    }
     return sessionStorage.getItem("fb_auth_login") || isKeepUserValid;
   };
 

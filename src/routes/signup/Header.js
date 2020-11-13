@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Wrapper } from "./styles/_headerStyle";
 import { HOME_PATH } from "../../path";
+import { decryptText } from "../../crypto";
 
 function Header() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,8 @@ function Header() {
     userTable = userTable ? JSON.parse(userTable) : [];
 
     const isCredentialsMatched = userTable.find(
-      (d) => d.email === email && d.password === password
+      (d) =>
+        decryptText(d.email) === email && decryptText(d.password) === password
     );
 
     if (isCredentialsMatched) {
@@ -55,7 +57,7 @@ function Header() {
   return (
     <Wrapper>
       <h1>facebook</h1>
-      <form noValidate onSubmit={handleLogin}>
+      <form noValidate autoComplete="off" onSubmit={handleLogin}>
         <div>
           <label htmlFor="email">Email</label>
           <input

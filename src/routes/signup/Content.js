@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Wrapper } from "./styles/_contentStyle";
+import { encryptText } from "../../crypto";
 import { MONTH, DAY, YEAR } from "./constant";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -69,8 +70,8 @@ function Content() {
         userTable.push({
           firstName,
           lastName,
-          email,
-          password,
+          email: encryptText(email),
+          password: encryptText(password),
           gender,
           birthdate,
         });
@@ -79,8 +80,8 @@ function Content() {
           {
             firstName,
             lastName,
-            email,
-            password,
+            email: encryptText(email),
+            password: encryptText(password),
             gender,
             birthdate,
           },
@@ -120,7 +121,7 @@ function Content() {
         <h2>Sign Up</h2>
         <p id="title-desc">It's free and always will be.</p>
         <hr />
-        <form noValidate onSubmit={handleSignUp}>
+        <form noValidate autoComplete="off" onSubmit={handleSignUp}>
           <table>
             <tbody>
               <tr>
@@ -363,7 +364,7 @@ function Content() {
         </form>
         <hr />
         <p id="create-page">
-          <a href="#">Create a Page</a> htmlFor a celebrity, band or business.
+          <a href="#">Create a Page</a> for a celebrity, band or business.
         </p>
       </div>
     </Wrapper>
